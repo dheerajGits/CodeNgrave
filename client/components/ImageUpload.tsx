@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useState } from "react";
 
 const ImageUpload = ({ isModal }: { isModal: boolean }) => {
@@ -49,15 +50,17 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
 
     const formData = new FormData();
     formData.append("image", selectedFile);
-
     try {
-      const response = await fetch("YOUR_LAMBDA_ENDPOINT_URL", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.text();
-      setResponseMessage(result);
+      const response = await axios.post(
+        "http://localhost:3030/hello",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setResponseMessage("hello");
     } catch (error) {
       console.error("Upload failed:", error);
       setResponseMessage("Upload failed. Please try again.");
