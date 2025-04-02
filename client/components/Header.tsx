@@ -7,18 +7,19 @@ const tabs: { name: string; link: string }[] = [
 ];
 export default function Header() {
   return (
-    <header className="bg-gray-800 w-full py-3 flex flex-row items-center justify-between px-10">
+    <header className="bg-gradient-to-r from-[#1c2438] to-[#2a3b5a]  w-full py-3 flex flex-row items-center justify-between px-10">
       <div className="flex flex-row items-center gap-1 hover:cursor-pointer ">
         <img src="/logo.png" alt="" className="w-10" />
         <p className="font-semibold font-inter">codeNGrave</p>
       </div>
 
       <div className="flex flex-row items-center justify-center gap-20">
-        {tabs.map((tab) => {
+        {tabs.map((tab, index) => {
           return (
             <a
               href={tab.link}
-              className=" text-lg relative pb-1 after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:bg-current after:scale-x-0 after:transition hover:after:scale-x-100"
+              key={index}
+              className=" text-lg hover:text-xl duration-300 relative pb-1 after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:bg-current after:scale-x-0 after:transition hover:after:scale-x-100"
             >
               {tab.name}
             </a>

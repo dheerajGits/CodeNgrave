@@ -2,10 +2,10 @@
 import { useState } from "react";
 
 const steps = [
-  "Upload Image",
-  "Receive Image and Process",
-  "Convert to Grayscale",
-  "Resize According to Work Dimensions",
+  "User Uploads the Image",
+  "We Receive the Image",
+  "Convert the Image to Grayscale",
+  "Resize the Image According to Work Dimensions",
   "Generate CNC Code",
   "Start Engraving Process",
 ];
@@ -36,25 +36,6 @@ function CardContent({
   return <div className={`p-4 ${className}`}>{children}</div>;
 }
 
-function Button({
-  className,
-  children,
-  onClick,
-}: {
-  className?: string;
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-6 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition ${className}`}
-    >
-      {children}
-    </button>
-  );
-}
-
 export default function CNCEngravingSteps() {
   return (
     <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center">
@@ -68,7 +49,10 @@ export default function CNCEngravingSteps() {
         >
           <Card className="w-1/2">
             <CardContent>
-              <p className="text-lg font-medium text-gray-700">{step}</p>
+              <div className="text-2xl flex flex-col gap-2 text-gray-700">
+                <p className="font-bold">Step-{index + 1}:</p>{" "}
+                <p className="font-medium ">{step}</p>
+              </div>
             </CardContent>
           </Card>
         </div>
