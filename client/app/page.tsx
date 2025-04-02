@@ -1,6 +1,5 @@
 import Crousel from "@/components/Crousel";
 import GetStartedButton from "@/components/GetStartedButton";
-import ImageUploadModal from "@/components/ImageUploadModal";
 import TypedText from "@/components/TypedText";
 import WorkFlowOverview from "@/components/WorkFlowOverview";
 
@@ -28,7 +27,9 @@ export default function Home() {
         <Crousel images={["/engrave.png", "/engrave2.png", "/engrave3.png"]} />
       </div>
       <section className="flex flex-col items-center justify-between font-inter mt-10 gap-10">
-        <h1 className="text-5xl text">How We Bring Designs/Moments to Life</h1>
+        <h1 className="text-4xl font-bold text">
+          How We Bring Designs/Moments to Life
+        </h1>
         <WorkFlowOverview />
       </section>
     </main>

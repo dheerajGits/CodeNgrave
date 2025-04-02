@@ -1,61 +1,63 @@
 "use client";
-import { useState } from "react";
 
-const steps = [
-  "User Uploads the Image",
-  "We Receive the Image",
-  "Convert the Image to Grayscale",
-  "Resize the Image According to Work Dimensions",
-  "Generate CNC Code",
-  "Start Engraving Process",
+const steps: { img: string; title: string; description: string }[] = [
+  {
+    img: "/workflow/upload.webp",
+    title: "User Uploads the Image",
+    description:
+      "The user selects an image from their device and uploads it to the portal.",
+  },
+  {
+    img: "/workflow/resize-icon.webp",
+    title: "We Receive the Image",
+    description:
+      "Once uploaded, the image is securely received and stored on our server. ",
+  },
+
+  {
+    img: "/workflow/cnc-code.webp",
+    title: "Resize and Generate CNC Code",
+    description:
+      "The image is scaled proportionally to fit the engraving material dimensions.",
+  },
+  {
+    img: "/workflow/manufacturing.webp",
+    title: "Start Engraving Process",
+    description:
+      "Once the G-code is generated, the CNC machine begins the engraving process.",
+  },
 ];
 
 function Card({
-  className,
-  children,
+  img,
+  title,
+  description,
 }: {
-  className: string;
-  children: React.ReactNode;
+  img: string;
+  title: string;
+  description: string;
 }) {
   return (
     <div
-      className={`rounded-lg shadow-md bg-white p-4 border border-gray-300 ${className}`}
+      className={` flex flex-col items-center justify-center rounded-lg shadow-md p-4 border w-80 gap-2 transition-transform duration-300 hover:cursor-pointer hover:scale-105 hover:shadow-lg select-none`}
     >
-      {children}
+      <img src={img} alt="" />
+      <p className="font-semibold text-xl">{title}</p>
+      <p className="text-lg">{description}</p>
     </div>
   );
 }
 
-function CardContent({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return <div className={`p-4 ${className}`}>{children}</div>;
-}
-
 export default function CNCEngravingSteps() {
   return (
-    <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center">
-      <div className="absolute top-0 bottom-0 w-1 bg-gray-300 left-1/2 transform -translate-x-1/2 border-dashed border-l-2"></div>
+    <div className="relative w-full  mx-auto flex flex-row items-stretch justify-center text-center gap-4 ">
       {steps.map((step, index) => (
-        <div
+        <Card
           key={index}
-          className={`flex w-full items-center my-4 ${
-            index % 2 === 0 ? "justify-start" : "justify-end"
-          }`}
-        >
-          <Card className="w-1/2">
-            <CardContent>
-              <div className="text-2xl flex flex-col gap-2 text-gray-700">
-                <p className="font-bold">Step-{index + 1}:</p>{" "}
-                <p className="font-medium ">{step}</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+          img={step.img}
+          title={step.title}
+          description={step.description}
+        />
       ))}
     </div>
   );

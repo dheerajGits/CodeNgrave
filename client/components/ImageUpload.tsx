@@ -60,6 +60,7 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
           },
         }
       );
+      console.log(Object.keys(response));
       setResponseMessage("hello");
     } catch (error) {
       console.error("Upload failed:", error);
