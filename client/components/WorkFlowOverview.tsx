@@ -39,18 +39,18 @@ function Card({
 }) {
   return (
     <div
-      className={` flex flex-col items-center justify-center rounded-lg shadow-md p-4 border w-80 gap-2 transition-transform duration-300 hover:cursor-pointer hover:scale-105 hover:shadow-lg select-none`}
+      className={` flex flex-col items-center justify-center rounded-lg shadow-md p-4 border w-80 max-xl:w-full gap-2 transition-transform duration-300 hover:cursor-pointer hover:scale-105 hover:shadow-lg select-none`}
     >
       <img src={img} alt="" />
-      <p className="font-semibold text-xl">{title}</p>
-      <p className="text-lg">{description}</p>
+      <p className="font-semibold text-2xl">{title}</p>
+      <p className="text-xl">{description}</p>
     </div>
   );
 }
 
 export default function CNCEngravingSteps() {
   return (
-    <div className="relative w-full  mx-auto flex flex-row items-stretch justify-center text-center gap-4 ">
+    <div className="relative w-full  mx-auto  flex flex-row max-xl:flex-col max-xl:items-center items-stretch justify-center text-center gap-8 ">
       {steps.map((step, index) => (
         <Card
           key={index}
