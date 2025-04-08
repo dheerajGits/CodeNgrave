@@ -2,10 +2,17 @@
 import axios from "axios";
 import { useState } from "react";
 
-const ImageUpload = ({ isModal }: { isModal: boolean }) => {
+const ImageUpload = ({
+  isModal,
+  code,
+  setCode,
+}: {
+  isModal: boolean;
+  code: string;
+  setCode: React.Dispatch<string>;
+}) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,13 +53,15 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
     }
 
     setUploading(true);
-    setResponseMessage(null);
 
     const formData = new FormData();
     formData.append("image", selectedFile);
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}:`, pair[1]);
+    }
     try {
       const response = await axios.post(
-        "http://localhost:3030/hello",
+        "https://mp89gf3osc.execute-api.ap-south-1.amazonaws.com/",
         formData,
         {
           headers: {
@@ -60,18 +69,20 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
           },
         }
       );
-      console.log(Object.keys(response));
-      setResponseMessage("hello");
+      setCode(response?.data);
     } catch (error) {
       console.error("Upload failed:", error);
-      setResponseMessage("Upload failed. Please try again.");
     } finally {
       setUploading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center p-4 border rounded-lg shadow-lg max-w-xl mx-auto">
+    <div
+      className={`flex flex-col items-center p-4 border rounded-lg shadow-lg xl:max-h-[600px] mx-auto ${
+        !isModal ? "xl:w-[80%] w-[96%]" : "max-w-xl"
+      }`}
+    >
       {!isModal && (
         <h2 className="text-lg font-semibold mb-2 text-black">
           Upload an Image
@@ -80,9 +91,9 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
 
       {/* Drag & Drop Area */}
       <div
-        className={`border-2 border-dashed rounded-lg p-6 w-full text-center cursor-pointer  ${
+        className={`border-2 flex items-center justify-center border-dashed rounded-lg p-6 w-full text-center cursor-pointer  ${
           dragging ? "border-blue-500 bg-blue-50" : "border-gray-400"
-        }`}
+        } ${!isModal && "h-[500px] max-xl:h-[200px]"}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -92,10 +103,10 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
           <img
             src={URL.createObjectURL(selectedFile)} // this is to create a url of the selected photo
             alt="Preview"
-            className="max-w-full h-32 object-contain mx-auto"
+            className="max-w-full h-full object-contain mx-auto"
           />
         ) : (
-          <p className="text-gray-500">
+          <p className="text-gray-500 text-xl">
             Drag & Drop an image or Click to Select
           </p>
         )}
@@ -115,13 +126,13 @@ const ImageUpload = ({ isModal }: { isModal: boolean }) => {
 
       <button
         onClick={handleUpload}
-        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md disabled:bg-gray-400"
+        className="mt-2 bg-blue-500 text-white text-2xl px-4 py-2 rounded-md disabled:bg-gray-400"
         disabled={uploading}
       >
         {uploading ? "Uploading..." : "Upload"}
       </button>
 
-      {responseMessage && <p className="mt-2 text-sm">{responseMessage}</p>}
+      {code && <p className="mt-2 text-sm">Cnc Code Generated</p>}
     </div>
   );
 };

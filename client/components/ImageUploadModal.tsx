@@ -39,7 +39,7 @@ export default function ImageUploadModal({
               >
                 Select and Upload Image
               </DialogTitle>
-              <ImageUpload isModal={true} />
+              <ImageUpload isModal={true} code={""} setCode={() => {}} />
             </DialogPanel>
           </div>
         </div>

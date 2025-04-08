@@ -1,9 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import ImageUploadModal from "./ImageUploadModal";
-
-export default function GetStartedButton() {
+import { useRouter } from "next/navigation";
+export default function GetStartedButton({
+  text,
+  navigationLink,
+}: {
+  text: string;
+  navigationLink: string;
+}) {
   const [isOpen, setISOpen] = useState(false);
+  const router = useRouter();
   const onClose = () => {
     setISOpen(false);
   };
@@ -15,10 +22,10 @@ export default function GetStartedButton() {
       <button
         className="mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg transition"
         onClick={() => {
-          setISOpen((value: boolean) => !value);
+          router.push(navigationLink);
         }}
       >
-        Get Started
+        {text}{" "}
       </button>
     </div>
   );

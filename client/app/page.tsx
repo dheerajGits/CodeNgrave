@@ -5,7 +5,7 @@ import WorkFlowOverview from "@/components/WorkFlowOverview";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-[#e8f1f8]  text-gray-800 w-full pt-4 max-xl:gap-10 gap-20 pb-20 max-xl:px-2">
+    <main className="flex flex-col items-center justify-center min-h-screen   text-gray-800 w-full pt-4 max-xl:gap-10 gap-20 pb-20 max-xl:px-2">
       <div className="flex flex-row max-xl:flex-col max-xl:text-center items-center justify-between max-xl:justify-center px-20 w-full">
         <div className="flex flex-col xl:items-start justify-center max-xl:gap-8">
           {" "}
@@ -25,7 +25,7 @@ export default function Home() {
               Upload an image, generate G-Code, and bring your designs to life.
             </b>
           </p>
-          <GetStartedButton />{" "}
+          <GetStartedButton text={"Get Started"} navigationLink={"cnc-tool"} />{" "}
         </div>
         <Crousel images={["/engrave.png", "/engrave2.png", "/engrave3.png"]} />
       </div>
@@ -57,9 +57,12 @@ export default function Home() {
             No charges, no hidden fees—just pure innovation! 🔥
           </b>
         </p>
-        <button className="text-[20px] py-3 px-6 bg-[#4b6cb7] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#3a539b] hover:scale-110 transition-all duration-300">
-          Upload & Convert 🔄
-        </button>
+        <a href="/cnc-tool">
+          <button className="text-[20px] py-3 px-6 bg-[#4b6cb7] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#3a539b] hover:scale-110 transition-all duration-300">
+            Upload & Convert 🔄
+          </button>
+          s
+        </a>
       </div>
     </main>
   );
