@@ -58,7 +58,7 @@ const ImageUpload = ({
     formData.append("image", selectedFile);
     try {
       const response = await axios.post(
-        "https://mp89gf3osc.execute-api.ap-south-1.amazonaws.com/",
+        process.env.NEXT_PUBLIC_IMAGE_TO_CNC_LAMBDA || "",
         formData,
         {
           headers: {

@@ -3,7 +3,7 @@ import React, { JSX, useState } from "react";
 import { FiMenu, FiX, FiTool, FiShoppingCart, FiInfo } from "react-icons/fi"; // Icons for sidebar
 
 const tabs: { name: string; link: string; icon: JSX.Element }[] = [
-  { name: "CNC Tool", link: "/image-to-cnc-convertor", icon: <FiTool /> },
+  { name: "CNC Tool", link: "/cnc-tool", icon: <FiTool /> },
   { name: "Order", link: "/place-order", icon: <FiShoppingCart /> },
   { name: "About Us", link: "/about-us", icon: <FiInfo /> },
 ];
