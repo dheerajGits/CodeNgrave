@@ -56,9 +56,6 @@ const ImageUpload = ({
 
     const formData = new FormData();
     formData.append("image", selectedFile);
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
     try {
       const response = await axios.post(
         "https://mp89gf3osc.execute-api.ap-south-1.amazonaws.com/",
